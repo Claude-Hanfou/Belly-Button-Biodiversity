@@ -19,11 +19,51 @@ fetch("samples.json")
         return resp.json();
     })
 
-    .then(function(data) {
-        console.log(data);
-    });
+    .then(result => {
+        jsonFileData = result;
+      });
 
 
+console.log(jsonFileData)
+
+function buildPlot() {
+    
+ 
+
+       // Grab values from the data json object to build the plots
+        //   var sample = data.samples;
+
+
+        //   var stock = data.dataset.dataset_code;
+          
+      
+        //   console.log(data)
+      
+        //   var trace1 = {
+        //     type: "barer",
+        //     x: 
+        //     y: 
+        //     orientation: "h"
+        //   };
+      
+        //   var data = [trace1];
+
+        //   var layout = {
+        //     title: "Bar",
+        //     margin: {
+        //       l: 100,
+        //       r: 100,
+        //       t: 100,
+        //       b: 100
+        //     }
+        //   };
+      
+        //   Plotly.newPlot("plot", data, layout);
+      
+        }
+      
+      
+      buildPlot(); 
 
 
 
