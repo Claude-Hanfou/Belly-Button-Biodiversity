@@ -23,6 +23,7 @@ init();
 function optionChanged(newSample) {
   buildMetadata(newSample);
   buildBarChart(newSample);
+  buildBubbleChart(newSample);
 
 } 
 function buildMetadata(sample) {
@@ -137,7 +138,7 @@ url = "../../../data/samples.json"
 // }
 // buildPlot ();
 
-
+// Grab values from the data json object to build the bar plot
 function buildBarChart(sample) {
   d3.json("samples.json").then((data) => {
     var resultArray = data
@@ -155,6 +156,7 @@ function buildBarChart(sample) {
     
     var top_ten_sample_values = result.sample_values.slice(0, 10).reverse();
     console.log(top_ten_sample_values);
+    
     var top_ten_otu_labels = result.otu_labels.slice(0, 10).reverse();
     
 
@@ -177,6 +179,67 @@ function buildBarChart(sample) {
       };
       
       Plotly.newPlot('bar', bar_trace, bar_layout)
+    
+    });
+  }
+
+
+
+// Grab values from the data json object to build the bubble plot
+function buildBubbleChart(sample) {
+  d3.json("samples.json").then((data) => {
+    var resultArray = data
+    .samples
+    .filter(sampleObj => {
+      return sampleObj.id == sample
+    });
+    
+    //get values that will display on the bubble chart when the id is selected
+
+    var result = resultArray[0]
+    console.log(result)
+
+    // use reverse on the variable due to plotly default order
+
+    var otuResult = result.otu_ids.map(numericIds => {
+      return numericIds;
+    }).reverse();
+    console.log(otuResult)
+
+    var sampleValues = result.sample_values.reverse();
+
+    var labels = result.otu_labels.reverse();
+
+    //use values to plot bubble chart
+
+
+
+
+
+    var bubble_trace = {
+      x:otuResult, 
+      y: sampleValues, 
+      text: labels, 
+      mode: 'markers',
+      marker: {
+        color: otuResult,
+        size: sampleValues 
+      }
+    };
+    
+    var data = [bubble_trace];
+    
+    var layout = {
+      title: 'OTU ID',
+      showlegend: false,
+     
+    };
+    
+    Plotly.newPlot('bubble', data, layout);
+   
+
+
+
     
     });
   }
