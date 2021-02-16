@@ -151,10 +151,13 @@ function buildBarChart(sample) {
     var top_ten_otu_ids = result.otu_ids.slice(0, 10).map(numericIds => {
       return 'OTU ' + numericIds;
     }).reverse();
+    console.log(top_ten_otu_ids)
     
     var top_ten_sample_values = result.sample_values.slice(0, 10).reverse();
+    console.log(top_ten_sample_values);
     var top_ten_otu_labels = result.otu_labels.slice(0, 10).reverse();
     
+
     var bar_trace = [
       {
         x: top_ten_sample_values,  
