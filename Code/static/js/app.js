@@ -19,6 +19,7 @@ function init() {
 
 init();
 
+// Create a function to update the plots when a new id is selected
 function optionChanged(newSample) {
   buildMetadata(newSample);
   buildBarChart(newSample);
