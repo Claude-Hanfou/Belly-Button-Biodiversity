@@ -1,25 +1,13 @@
 // Begining of the code below
 
 
-//Append names to the dropdown by reading the json file and appending it
-// function init() {
-//   var selector = d3.select("#selDataset");
-
-//   d3.json("samples.json").then((data) => {
-//     console.log(data);
-//     var sampleNames = data.names;
-//     console.log(sampleNames);
-//     sampleNames.forEach((sample) => {
-//       selector
-//         .append("option")
-//         .text(sample)
-//         .property("value", sample);
-//     });
-// })}
-
-// init();
-
-
+//Here we want to add the ID's to the dropdowm,looking at the html we want to create options for each id
+//we select the dropdown area and then call the json data method
+//we extrat the names from the data(id)
+//for each id we want to append that to the selector
+//create a function and refrence the selector, we append option which will allow us to select different elements
+//add the text which are the various ids
+//the property and value name adds a value for each and is referncing each name
 
 function init() {
   var selector = d3.select("#selDataset");
@@ -38,20 +26,15 @@ function init() {
     })
 
 })}
-    
-
-
 init();
 
 
 
 
-
-
-
-
-
 // // Create a function to update the plots when a new id is selected
+//each function will take a new sample parameter to update the plots and the metadata
+//the functions are created below and are not called, they are referenceed above and updated when called with the new sample
+
 function optionChanged(newSample) {
   buildMetadata(newSample);
 //   buildBarChart(newSample);
@@ -59,30 +42,10 @@ function optionChanged(newSample) {
 
 } 
 
-
-
-
-// function buildMetadata(sample) {
-//   d3.json("samples.json").then((data) => {
-//     var metadata = data.metadata;
-//     var resultArray = metadata.filter(sampleObj => sampleObj.id == sample);
-//     var result = resultArray[0];
-//     var PANEL = d3.select("#sample-metadata");
-
-//     PANEL.html("");
-    
-//     Object.entries(result).forEach(([key, value]) => {
-//       PANEL.append("h6").text(key.toLowerCase() + ': ' + value); 
-//     })
-
-//     console.log(result);
-
-
-//   })};
-//To get the demographic info when we select the dropdowm, we need to to use sample which is going to be updated when the id is changed.
-//we make the sample  equal tothe id so that it changes when that it selected
+//To get the demographic info when we select the dropdowm, we need to use sample which is going to be updated when the id is changed.
+//we make the sample  equal to the id so that it changes when that it selected
 //We take the first result at 0 since that is the values we want to populate
-//It is always foing to be zero because when we select it only returns one at the time, and that is what we ant to plot
+//It is always going to be zero because when we select it,it only returns one at the time, and that is what we want to plot
 
 function buildMetadata(sample) {
   d3.json("samples.json").then((data) => {
@@ -108,29 +71,6 @@ function buildMetadata(sample) {
 
 })}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// // // Start by reading the json file 
-// url = "../../../data/samples.json"
 
 
 
@@ -257,6 +197,29 @@ function buildMetadata(sample) {
     
 //     });
 //   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
