@@ -38,7 +38,7 @@ init();
 function optionChanged(newSample) {
   buildMetadata(newSample);
   buildBarChart(newSample);
-//   buildBubbleChart(newSample);
+  buildBubbleChart(newSample);
 
 } 
 
@@ -74,7 +74,7 @@ function buildMetadata(sample) {
 
 
 
-// Grab values from the data json object to build the bar plot
+// Grab values from the data json object to build the bar plot. The data is storred in one variable
 
 function buildBarChart(sample) {
   d3.json("samples.json").then((data) => {
@@ -84,8 +84,9 @@ function buildBarChart(sample) {
     .filter(sampleVal => {
       return sampleVal.id == sample
     });
-    
 
+    console.log(sampleValues)
+  
 
     var results = sampleValues[0]
     console.log(results);
@@ -119,138 +120,56 @@ function buildBarChart(sample) {
 
 
 
-
-
-
-
-
-
-
-// // Grab values from the data json object to build the bar plot
-// function buildBarChart(sample) {
-//   d3.json("samples.json").then((data) => {
-//     var resultArray = data
-//     .samples
-//     .filter(sampleObj => {
-//       return sampleObj.id == sample
-//     });
+// Grab values from the data json object to build the bubble plot
+function buildBubbleChart(sample) {
+  d3.json("samples.json").then((data) => {
+    var resultArray = data
+    .samples
+    .filter(sampleObj => {
+      return sampleObj.id == sample
+    });
     
-//     var result = resultArray[0];
-//     console.log(result);
-//     var top_ten_otu_ids = result.otu_ids.slice(0, 10).map(numericIds => {
-//       return 'OTU ' + numericIds;
-//     }).reverse();
-//     console.log(top_ten_otu_ids)
+    //get values that will display on the bubble chart when the id is selected
+
+    var result = resultArray[0]
+    console.log(result)
+
+    // use reverse on the variable due to plotly default order
+
+    var otuResult = result.otu_ids.map(numericIds => {
+      return numericIds;
+    }).reverse();
+    console.log(otuResult)
+
+    var sampleValues = result.sample_values.reverse();
+
+    var labels = result.otu_labels.reverse();
+
+    //use values to plot bubble chart
+
+
+
+    var bubble_trace = {
+      x:otuResult, 
+      y: sampleValues, 
+      text: labels, 
+      mode: 'markers',
+      marker: {
+        color: otuResult,
+        size: sampleValues 
+      }
+    };
     
-//     var top_ten_sample_values = result.sample_values.slice(0, 10).reverse();
-//     console.log(top_ten_sample_values);
+    var data = [bubble_trace];
     
-//     var top_ten_otu_labels = result.otu_labels.slice(0, 10).reverse();
-    
-
-//     var bar_trace = [
-//       {
-//         x: top_ten_sample_values,  
-//         y: top_ten_otu_ids,
-//         text: top_ten_otu_labels,
-//         name: "Top 10",
-//         type: 'bar',
-//         orientation: 'h'
-//       }
-//       ];
-
-//       var data = [bar_trace];
-
-//       var bar_layout = {
-//         title: "Top 10 OTUs",
-   
-//       };
-      
-//       Plotly.newPlot('bar', bar_trace, bar_layout)
-    
-//     });
-//   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// // Grab values from the data json object to build the bubble plot
-// function buildBubbleChart(sample) {
-//   d3.json("samples.json").then((data) => {
-//     var resultArray = data
-//     .samples
-//     .filter(sampleObj => {
-//       return sampleObj.id == sample
-//     });
-    
-//     //get values that will display on the bubble chart when the id is selected
-
-//     var result = resultArray[0]
-//     console.log(result)
-
-//     // use reverse on the variable due to plotly default order
-
-//     var otuResult = result.otu_ids.map(numericIds => {
-//       return numericIds;
-//     }).reverse();
-//     console.log(otuResult)
-
-//     var sampleValues = result.sample_values.reverse();
-
-//     var labels = result.otu_labels.reverse();
-
-//     //use values to plot bubble chart
-
-
-
-
-
-//     var bubble_trace = {
-//       x:otuResult, 
-//       y: sampleValues, 
-//       text: labels, 
-//       mode: 'markers',
-//       marker: {
-//         color: otuResult,
-//         size: sampleValues 
-//       }
-//     };
-    
-//     var data = [bubble_trace];
-    
-//     var layout = {
-//       title: 'OTU ID',
-//       showlegend: false,
+    var layout = {
+      title: 'OTU ID',
+      showlegend: false,
      
-//     };
+    };
     
-//     Plotly.newPlot('bubble', data, layout);
-   
-
-
-
+    Plotly.newPlot('bubble', data, layout);
+  
     
-//     });
-//   }
+    });
+  }
