@@ -37,7 +37,7 @@ init();
 
 function optionChanged(newSample) {
   buildMetadata(newSample);
-//   buildBarChart(newSample);
+  buildBarChart(newSample);
 //   buildBubbleChart(newSample);
 
 } 
@@ -50,7 +50,7 @@ function optionChanged(newSample) {
 function buildMetadata(sample) {
   d3.json("samples.json").then((data) => {
 
-    metadata = data.metadata
+    var metadata = data.metadata
     console.log(metadata)
 
     var metaResult = metadata.filter(meta => meta.id == sample)
@@ -74,36 +74,33 @@ function buildMetadata(sample) {
 
 
 
+// Grab values from the data json object to build the bar plot
 
 function buildBarChart(sample) {
   d3.json("samples.json").then((data) => {
 
-     //Grab values from the data json object to build the plots
-
-    var sampleValues = data.samples
-    console.log(sampleValues)
-    var samplesResult = sampleValues.filter(sampleVal => {return sampleVal.id == sample})
-    console.log(samplesResult)
-
+    var sampleValues = data
+    .samples
+    .filter(sampleVal => {
+      return sampleVal.id == sample
+    });
     
 
 
-    var results = samplesResult[0]
+    var results = sampleValues[0]
+    console.log(results);
 
     var otuId = results.otu_ids.slice(0,10).map(otu=> { return "OTU" + otu}).reverse()
-
-    var samples = results.samples_values.slice(0,10).reverse()
+    var samples = results.sample_values.slice(0,10).reverse()
     var labels = results.otu_labels.slice(0,10).reverse()
 
-
-
-    
       
     var trace1 = {
       type: "bar",
       x: samples,
       y: otuId ,
       text: labels,
+      name: "Top 10",
       orientation: "h"
           };
       
@@ -114,13 +111,14 @@ function buildBarChart(sample) {
        
     }
       
-    Plotly.newPlot("plot", data, layout);
+    Plotly.newPlot("bar", data, layout);
       
   })
 
 }
 
-buildBarChart ();
+
+
 
 
 
