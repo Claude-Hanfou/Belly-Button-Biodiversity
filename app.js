@@ -75,83 +75,58 @@ function buildMetadata(sample) {
 
 
 
-// // function buildBarChart(sample) {
-// //   d3.json("samples.json").then((data) => {
-// //     var resultArray = data
-// //     .samples
-// //     .filter(sampleObj => {
-// //       return sampleObj.id == sample
-// //     });
+function buildBarChart(sample) {
+  d3.json("samples.json").then((data) => {
+
+     //Grab values from the data json object to build the plots
+
+    var sampleValues = data.samples
+    console.log(sampleValues)
+    var samplesResult = sampleValues.filter(sampleVal => {return sampleVal.id == sample})
+    console.log(samplesResult)
 
     
 
 
+    var results = samplesResult[0]
 
+    var otuId = results.otu_ids.slice(0,10).map(otu=> { return "OTU" + otu}).reverse()
 
-// //     // Grab values from the data json object to build the plots
-    
-// //     // var sampleValues = data.samples;
-// //     // console.log(sampleValues)
-
-// //     // var samplesResult = sampleValues.filter(sampleVal => {return sampleVal.id == sample})
-// //     // console.log(samplesResult)
-
-// //     // var result = metadata.filter(sampleObj => sampleObj.id == sample);
-    
-   
-    
-
-     
-
-
+    var samples = results.samples_values.slice(0,10).reverse()
+    var labels = results.otu_labels.slice(0,10).reverse()
 
 
 
     
-// // //     // var otuId = data['samples'][0]['otu_ids']
-// // //     // console.log(otuId)
-
-// // //     // var text = data['samples'][0]['otu_labels']
-// // //     // console.log(text)
-
-    
-
-
-// //     console.log(data)
-
-   
-// // //           // var sample = data.samples;
-
-
-// // //           // var stock = data.dataset.dataset_code;
-          
       
-// // //           // console.log(data)
+    var trace1 = {
+      type: "bar",
+      x: samples,
+      y: otuId ,
+      text: labels,
+      orientation: "h"
+          };
       
-// // //           // var trace1 = {
-// // //           //   type: "barer",
-// // //           //   x: 
-// // //           //   y: 
-// // //           //   orientation: "h"
-// // //           // };
-      
-// // //           // var data = [trace1];
+    var data = [trace1];
 
-// // //           // var layout = {
-// // //           //   title: "Bar",
-// // //           //   margin: {
-// // //           //     l: 100,
-// // //           //     r: 100,
-// // //           //     t: 100,
-// // //           //     b: 100
-// // //           //   }
-// // //           // };
+    var layout = {
+      title: "Top 10 OTUs",
+       
+    }
       
-// // //           // Plotly.newPlot("plot", data, layout);
+    Plotly.newPlot("plot", data, layout);
       
-// //   // });
-// // }
-// // buildPlot ();
+  })
+
+}
+
+buildBarChart ();
+
+
+
+
+
+
 
 // // Grab values from the data json object to build the bar plot
 // function buildBarChart(sample) {
