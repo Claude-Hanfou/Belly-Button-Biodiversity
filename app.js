@@ -120,6 +120,43 @@ function buildBarChart(sample) {
 
 
 
+//build the gauge plotly
+
+// function buildBarChart(sample) {
+//   d3.json("samples.json").then((data) => {
+
+//     var gaugeValues = data
+//     .samples
+//     .filter(sampleVal => {
+//       return sampleVal.id == sample
+//     });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Grab values from the data json object to build the bubble plot
 function buildBubbleChart(sample) {
   d3.json("samples.json").then((data) => {
