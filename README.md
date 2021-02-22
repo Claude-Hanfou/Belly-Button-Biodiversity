@@ -1,4 +1,4 @@
-# Bellybutton Biodiversity
+# Belly Button Biodiversity
 
 ![alt text](https://github.com/Claude-Hanfou/Javascript-Visualizations-and-Dashboards/blob/main/Images/app%20screenshot.PNG "belly")
 
