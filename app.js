@@ -39,7 +39,7 @@ function optionChanged(newSample) {
   buildMetadata(newSample);
   buildBarChart(newSample);
   buildGauge(newSample);
-  buildBubbleChart(newSample);
+ 
 
 } 
 
@@ -122,81 +122,6 @@ function buildBarChart(sample) {
 
 
 //build the gauge plotly
-
-// function buildGaugeChart(sample) {
-//   d3.json("samples.json").then((data) => {
-
-//     var frequency = data.metadata
-//     console.log(frequency)
-
-//     var freqResult = frequency.filter(freq => freq.id == sample)
-//     var results = freqResult[0]
-//     console.log(results)
-
-//     var freqScrub = results.wfreq
-
-//     var dataGauge = [
-//       {
-//         domain: { x: [0, 1], y: [0, 1] },
-
-//         value: freqScrub,
-//         title: { text: "Scrubs Per Week" },
-//         type: "indicator",
-//         mode: "gauge+number",
-
-//         gauge: {
-//           axis: { range: [null, 10] },
-//           bar: { color: "salmon" },
-//           {values: [50/9, 50/9, 50/9, 50/9, 50/9, 50/9, 50/9, 50/9, 50/9, 50,9],
-//           rotation: 90,
-//           text: ['0-1', '1-2', '2-3', '3-4', '4-5', '5-6', '6-7', '7-8', '8-9','9-10'],
-//           textinfo: 'text',
-//           textposition:'inside',	  
-//           marker: {colors:['rgba(14, 127, 0, .5)', 'rgba(110, 154, 22, .5)',
-//                          'rgba(170, 202, 42, .5)', 'rgba(202, 209, 95, .5)',
-//                          'rgba(210, 206, 145, .5)', 'rgba(232, 226, 202, .5)',
-//                          'rgba(255, 255, 255, 0)']},
-//           labels: ['0-1', '1-2', '2-3', '3-4', '4-5', '5-6', '6-7', '7-8', '8-9','9-10'],
-//           hoverinfo: 'label',
-//           hole: .5,
-//           type: 'pie',
-//           showlegend: false }
-            
-         
-//           }
-//       }]
-    
-//     var layout = { width: 600, height: 500, margin: { t: 0, b: 0 } };
-//     Plotly.newPlot('gauge', dataGauge, layout);
- 
-
-
-//    })
-
-// }
-
-
-
-
-
-// text: ['0-1', '1-2', '2-3', '3-4', '4-5', '5-6', '6-7', '7-8', '8-9','9-10'],
-//           textinfo: 'text',
-//           textposition:'inside',	
-//           steps: [
-//             { range: [0, 1], color: 'rgba(14, 127, 0, .5)'},
-//             { range: [1,2], color: 'rgba(110, 154, 22, .5)'},
-//             { range: [2,3], color: 'rgba(170, 202, 42, .5)' },
-//             { range: [3, 4], color: 'rgba(202, 209, 95, .5)'},
-//             { range: [4, 5], color: 'rgba(210, 206, 145, .5)' },
-//             { range: [5, 6], color: 'rgba(232, 226, 202, .5)' },
-//             { range: [6, 7], color: 'rgba(255, 255, 255, 0)'},
-//             { range: [7, 8], color: "lightgreen" },
-//             { range: [8, 9], color: "green" },
-//             { range: [9, 10], color: "teal" }
-
-//           ]},
-
-
 
 function buildGauge(wfreq) {
   // Enter the washing frequency between 0 and 180
@@ -287,9 +212,6 @@ function buildGauge(wfreq) {
   var GAUGE = document.getElementById("gauge");
   Plotly.newPlot(GAUGE, data, layout);
 }
-
-
-
 
 
 
