@@ -1,10 +1,9 @@
-# Javascript-Visualizations-and-Dashboards
+# Bellybutton Biodiversity
+
+![alt text](https://github.com/Claude-Hanfou/Javascript-Visualizations-and-Dashboards/blob/main/Images/app%20screenshot.PNG "belly")
 
 
-https://claude-hanfou.github.io/Javascript-Visualizations-and-Dashboards/
-
-
-
+The webpage can be viewd herehttps://claude-hanfou.github.io/Javascript-Visualizations-and-Dashboards/
 
 
 In this assignment, an interactive dashboard was built to explore the Belly Button Biodiversity dataset, which catalogs the microbes that colonize human navels in JSON format.
@@ -31,8 +30,9 @@ Get required data for plotting, including sample_values, otu_ids and otu_labels 
 Since the task was to only plot the top 10 values, the three arrays were sliced and reversed to display the chart as below.
 
 
+![alt text](https://github.com/Claude-Hanfou/Javascript-Visualizations-and-Dashboards/blob/main/Images/bar.PNG "bar")
 
-
+![alt text](https://github.com/Claude-Hanfou/Javascript-Visualizations-and-Dashboards/blob/main/Images/bubble.PNG "bubble")
 
 A function called plotCharts(id) was created that would take in a test subject ID as a parameter and plot all the above charts.
 
@@ -46,3 +46,5 @@ Everytime a new ID is selected from the dropdown (on change), an optionChanged(t
 Dashboard
 
 Bootstrap and custom CSS was used to pretty up the dashboard. A screenshot of the dashboard can be seen below.
+
+![alt text](https://github.com/Claude-Hanfou/Javascript-Visualizations-and-Dashboards/blob/main/Images/gauge.PNG "gauge")
