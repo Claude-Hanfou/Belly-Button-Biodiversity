@@ -39,7 +39,7 @@ function optionChanged(newSample) {
   buildMetadata(newSample);
   buildBarChart(newSample);
   buildGauge(newSample);
-  uildBubbleChart(newSample)
+  buildBubbleChart(newSample)
  
 
 } 
