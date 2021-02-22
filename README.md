@@ -3,8 +3,7 @@
 ![alt text](https://github.com/Claude-Hanfou/Javascript-Visualizations-and-Dashboards/blob/main/Images/app%20screenshot.PNG "belly")
 
 
-The dashboard can be viewed here: https://claude-hanfou.github.io/Javascript-Visualizations-and-Dashboards/
-
+The dashboard can be viewed here: https://claude-hanfou.github.io/Belly-Button-Biodiversity/
 
 In this project, an interactive dashboard was built to explore the Belly Button Biodiversity dataset, which catalogs the microbes that colonize human navels in JSON format.
 
